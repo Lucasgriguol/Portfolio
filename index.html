@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>Mi Portfolio</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Inicio</a></li>
+                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#about">Sobre Mí</a></li>
+                    <li><a href="#skills">Habilidades</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section - Rediseñado -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hola, soy <span>Lucas Griguol</span></h1>
+                    <h2 class="code-font">Full Stack Developer</h2>
+                    <p>Software con propósito.</p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Ver Proyectos
+                        </a>
+                        <a href="#contact" class="btn">
+                            <i class="fas fa-envelope"></i> Contáctame
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tech Icons Grid -->
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fab fa-js tech-icon"></i>
+                        <div class="tech-name">JavaScript</div>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-react tech-icon"></i>
+                        <div class="tech-name">React</div>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-node-js tech-icon"></i>
+                        <div class="tech-name">Node.js</div>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-python tech-icon"></i>
+                        <div class="tech-name">Python</div>
+                    </div>
+
+                    <div class="tech-item">
+                        <i class="fas fa-database tech-icon"></i>
+                        <div class="tech-name">MongoDB</div>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-docker tech-icon"></i>
+                        <div class="tech-name">Docker</div>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-git-alt tech-icon"></i>
+                        <div class="tech-name">Git</div>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-server tech-icon"></i>
+                        <div class="tech-name">Express</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mis <span>Proyectos</span></h2>
+            </div>
+
+            <div class="projects-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="./Fraganza.png" alt="Fraganza">
+                        <div class="project-badge">Full Stack</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Perfumeria Fraganza</h3>
+                        <p>Plataforma de e-commerce con sistema de reservas integrado vía WhatsApp, diseñada para un
+                            negocio real, con gestión de más de 200 productos y foco en la funcionalidad y estetica.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Html & Css</span>
+                            <span class="tech-tag">React JS</span>
+                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Proyecto Real</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://fraganzaa.netlify.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="./RC.jpg" alt="Pintureria Republica Colores">
+                        <div class="project-badge">Full Stack</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Pintureria Republica Colores</h3>
+                        <p>Plataforma web desarrollada para una pinturería, con amplio catálogo de productos y sistema
+                            de reservas integrado vía WhatsApp, orientada a optimizar la atención al cliente y la
+                            gestión de reservas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Html & Css</span>
+                            <span class="tech-tag">React JS</span>
+                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Proyecto Real</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://republicacolores.netlify.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-card" data-category="frontend">
+                    <div class="project-image">
+                        <img src="./Inventario.webp" alt="Inventario">
+                        <div class="project-badge">Frontend</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Inventario Web</h3>
+                        <p>En proceso...</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Html & Css</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">Firebase</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí - Sin Imagen -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre <span>Mí</span></h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Hola, mi nombre es Lucas!
+                        Soy Full Stack Developer con experiencia en JavaScript, React, Express y bases de datos NoSQL
+                        (MongoDB). Me especializo en el diseño y desarrollo de aplicaciones web, priorizando la calidad
+                        estética, la funcionalidad del sistema y una experiencia de usuario clara y eficiente.
+                    </p>
+                    <p>
+                        Cuento con experiencia como trabajador independiente en proyectos en producción, a los que
+                        brindo mantenimiento, actualizaciones y soporte continuo.
+                    </p>
+
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-brain"></i>
+                            <h4>Pensamiento Analítico</h4>
+                            <p>Capacidad para analizar problemas y diseñar soluciones eficientes.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-tasks"></i>
+                            <h4>Trabajo en equipo</h4>
+                            <p>Capacidad para integrarse a equipos de desarrollo y colaborar en proyectos conjuntos.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-comments"></i>
+                            <h4>Comunicación clara</h4>
+                            <p>Capacidad para transmitir ideas y requerimientos de forma precisa.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Mejora continua</h4>
+                            <p>Aprendizaje constante y actualización de habilidades técnicas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades con Íconos -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mis <span>Habilidades</span></h2>
+            </div>
+
+            <div class="skills-content">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
+                        <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                        <span class="skill-tag"><i class="fab fa-react"></i> React</span>
+                        <span class="skill-tag"><i class="fab fa-sass"></i> Sass/SCSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fab fa-node-js"></i> Node.js</span>
+                        <span class="skill-tag"><i class="fas fa-server"></i> Express.js</span>
+                        <span class="skill-tag"><i class="fas fa-database"></i> MongoDB</span>
+                        <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="skill-tag"><i class="fas fa-network-wired"></i> REST APIs</span>
+                        <span class="skill-tag"><i class="fas fa-fire"></i> Firebase</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Herramientas & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+                        <span class="skill-tag"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                        <span class="skill-tag"><i class="fab fa-git-alt"></i> GitHub</span>
+                        <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="skill-tag"><i class="fas fa-palette"></i> Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Trabajemos <span>Juntos</span></h3>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Ubicación</h4>
+                                <p>Córdoba, Argentina</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>Lucasgriguol2006@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Teléfono</h4>
+                                <p>+54 351 518 9273</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Disponibilidad</h4>
+                                <p>Disponible a tiempo completo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <h3>DevPort</h3>
+                    <p>Desarrolladora Full Stack especializada en crear soluciones digitales innovadoras, escalables y
+                        centradas en el usuario.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Lucasgriguol" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/lucasgriguol" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/lucasgriguol10?igsh=MTk5amRidnVuNXk1cg==" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col footer-links">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Sobre Mí</a></li>
+                        <li><a href="#skills"><i class="fas fa-chevron-right"></i> Habilidades</a></li>
+                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Proyectos</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-links">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Desarrollo Web</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Consulta Técnica</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Mantenimiento</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 DevPort. Todos los derechos reservados.</p>
+                <p class="code-font">Desarrollado con <i class="fas fa-heart" style="color: var(--secondary);"></i> y
+                    mucho código</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Menú móvil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Filtros de proyectos
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover active de todos los botones
+                filterBtns.forEach(b => b.classList.remove('active'));
+
+                // Agregar active al botón clickeado
+                btn.classList.add('active');
+
+                // Filtrar proyectos
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Aquí normalmente enviarías el formulario a un servidor
+            // Por ahora solo mostraremos una alerta
+            alert('¡Gracias por tu mensaje! Te contactaré en breve.');
+            contactForm.reset();
+        });
+
+        // Navegación activa al hacer scroll
+        const sections = document.querySelectorAll('section');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Efecto de escritura en el hero
+        const heroTitle = document.querySelector('.hero-text h1 span');
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Iniciar efecto de escritura cuando la página carga
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+
+        // Efecto hover en skill tags y tech items
+        const skillTags = document.querySelectorAll('.skill-tag');
+        const techItems = document.querySelectorAll('.tech-item');
+
+        skillTags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                tag.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+
+            tag.addEventListener('mouseleave', () => {
+                tag.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        techItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-10px)';
+            });
+
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animación de elementos al hacer scroll
+        const animatedElements = document.querySelectorAll('.skill-category, .project-card, .feature-item, .tech-item');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

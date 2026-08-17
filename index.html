@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Lucas — Desarrollo web y Community Manager." />
+        <title>Lucas — Web & Redes</title>
+
+        <style>
+                :root {
+                        --bg: #f5f3ee;
+                        --surface: rgba(255, 255, 255, 0.72);
+                        --text: #171717;
+                        --muted: #686868;
+                        --border: rgba(23, 23, 23, 0.09);
+                        --accent: #725cff;
+                        --accent-soft: #e9e5ff;
+                        --green: #54c47d;
+                        --shadow: 0 18px 60px rgba(24, 24, 24, 0.08);
+                        --radius-lg: 22px;
+                        --radius-md: 20px;
+                        --max-width: 1120px;
+                }
+
+                * {
+                        box-sizing: border-box;
+                        margin: 0;
+                        padding: 0;
+                }
+
+                html {
+                        scroll-behavior: smooth;
+                }
+
+                body {
+                        min-height: 100vh;
+                        overflow-x: hidden;
+                        color: var(--text);
+                        background:
+                                radial-gradient(circle at 10% 0%,
+                                        rgba(240, 215, 255, 0.65),
+                                        transparent 28%),
+                                radial-gradient(circle at 90% 5%,
+                                        rgba(199, 233, 255, 0.65),
+                                        transparent 28%),
+                                var(--bg);
+                        font-family:
+                                Inter,
+                                ui-sans-serif,
+                                system-ui,
+                                -apple-system,
+                                BlinkMacSystemFont,
+                                "Segoe UI",
+                                sans-serif;
+                        line-height: 1.5;
+                }
+
+                a {
+                        color: inherit;
+                        text-decoration: none;
+                }
+
+                button,
+                a {
+                        -webkit-tap-highlight-color: transparent;
+                }
+
+                ::selection {
+                        color: #fff;
+                        background: var(--text);
+                }
+
+                .container {
+                        width: min(calc(100% - 40px), var(--max-width));
+                        margin-inline: auto;
+                }
+
+                /* =========================
+       NAV
+    ========================= */
+
+                .nav-wrap {
+                        position: fixed;
+                        z-index: 50;
+                        top: 18px;
+                        left: 0;
+                        width: 100%;
+                        pointer-events: none;
+                }
+
+                nav {
+                        width: min(calc(100% - 28px), 980px);
+                        margin: 0 auto;
+                        padding: 10px 12px 10px 18px;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 18px;
+
+                        border: 1px solid rgba(255, 255, 255, 0.65);
+                        border-radius: 999px;
+                        background: rgba(255, 255, 255, 0.58);
+                        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+
+                        backdrop-filter: blur(18px);
+                        -webkit-backdrop-filter: blur(18px);
+
+                        pointer-events: auto;
+                        transition: 0.25s ease;
+                }
+
+                nav.scrolled {
+                        background: rgba(255, 255, 255, 0.84);
+                        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+                }
+
+                .brand {
+                        display: flex;
+                        align-items: center;
+                        gap: 9px;
+
+                        font-size: 0.95rem;
+                        font-weight: 800;
+                        letter-spacing: -0.03em;
+                        white-space: nowrap;
+                }
+
+                .brand-dot {
+                        width: 9px;
+                        height: 9px;
+                        border-radius: 50%;
+                        background: var(--accent);
+                        box-shadow: 0 0 0 6px rgba(114, 92, 255, 0.1);
+                }
+
+                .nav-links {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                }
+
+                .nav-links a {
+                        padding: 9px 13px;
+                        border-radius: 999px;
+
+                        color: #555;
+                        font-size: 0.84rem;
+                        font-weight: 650;
+
+                        transition: 0.2s ease;
+                }
+
+                .nav-links a:hover {
+                        color: var(--text);
+                        background: rgba(0, 0, 0, 0.05);
+                }
+
+                .nav-contact {
+                        color: #fff !important;
+                        background: var(--text) !important;
+                }
+
+                /* =========================
+       GENERAL
+    ========================= */
+
+                section {
+                        padding: 100px 0;
+                }
+
+                .section-head {
+                        display: flex;
+                        align-items: end;
+                        justify-content: space-between;
+                        gap: 30px;
+                        margin-bottom: 34px;
+                }
+
+                .section-kicker {
+                        margin-bottom: 9px;
+
+                        color: var(--accent);
+                        font-size: 0.75rem;
+                        font-weight: 850;
+                        letter-spacing: 0.12em;
+                        text-transform: uppercase;
+                }
+
+                .section-title {
+                        max-width: 700px;
+
+                        font-size: clamp(2rem, 4vw, 3.7rem);
+                        line-height: 1;
+                        letter-spacing: -0.06em;
+                }
+
+                .section-desc {
+                        max-width: 390px;
+
+                        color: var(--muted);
+                        font-size: 0.95rem;
+                }
+
+                .reveal {
+                        opacity: 0;
+                        transform: translateY(24px);
+                        transition:
+                                opacity 0.7s ease,
+                                transform 0.7s ease;
+                }
+
+                .reveal.visible {
+                        opacity: 1;
+                        transform: translateY(0);
+                }
+
+                /* =========================
+       BUTTONS
+    ========================= */
+
+                .button {
+                        min-height: 48px;
+                        padding: 0 18px;
+
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+
+                        border: 1px solid var(--text);
+                        border-radius: 999px;
+
+                        font-size: 0.9rem;
+                        font-weight: 750;
+
+                        transition:
+                                transform 0.2s ease,
+                                box-shadow 0.2s ease,
+                                background 0.2s ease;
+                }
+
+                .button:hover {
+                        transform: translateY(-2px);
+                }
+
+                .button.primary {
+                        color: #fff;
+                        background: var(--text);
+                        box-shadow: 0 10px 28px rgba(23, 23, 23, 0.13);
+                }
+
+                .button.secondary {
+                        border-color: var(--border);
+                        background: rgba(255, 255, 255, 0.55);
+                }
+
+                .button.light {
+                        color: var(--text);
+                        border-color: #fff;
+                        background: #fff;
+                }
+
+                .button.ghost-dark {
+                        color: #fff;
+                        border-color: rgba(255, 255, 255, 0.2);
+                        background: rgba(255, 255, 255, 0.06);
+                }
+
+                /* =========================
+       HERO
+    ========================= */
+
+                .hero {
+                        min-height: 92vh;
+                        display: flex;
+                        align-items: center;
+                        padding: 150px 0 90px;
+                }
+
+                .hero-grid {
+                        display: grid;
+                        grid-template-columns: 1.25fr 0.75fr;
+                        align-items: end;
+                        gap: 60px;
+                }
+
+                .eyebrow {
+                        width: fit-content;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+
+                        margin-bottom: 22px;
+                        padding: 7px 12px;
+
+                        border: 1px solid var(--border);
+                        border-radius: 999px;
+                        background: rgba(255, 255, 255, 0.6);
+
+                        color: #5f5f5f;
+                        font-size: 0.78rem;
+                        font-weight: 700;
+                }
+
+                .eyebrow span {
+                        width: 7px;
+                        height: 7px;
+                        display: inline-block;
+
+                        border-radius: 50%;
+                        background: var(--green);
+                }
+
+                h1 {
+                        max-width: 780px;
+
+                        font-size: clamp(3.25rem, 8vw, 7.4rem);
+                        line-height: 0.93;
+                        letter-spacing: -0.075em;
+                        font-weight: 850;
+                }
+
+                .hero h1 em {
+                        color: var(--accent);
+                        font-style: normal;
+                }
+
+                .hero-copy {
+                        max-width: 540px;
+                        margin-top: 28px;
+
+                        color: var(--muted);
+                        font-size: clamp(1rem, 1.7vw, 1.18rem);
+                        line-height: 1.7;
+                }
+
+                .hero-actions {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin-top: 32px;
+                }
+
+                .hero-note {
+                        justify-self: end;
+                        width: min(100%, 310px);
+
+                        padding: 25px;
+
+                        border: 1px solid rgba(255, 255, 255, 0.7);
+                        border-radius: var(--radius-lg);
+                        background: rgba(255, 255, 255, 0.55);
+                        box-shadow: var(--shadow);
+
+                        transform: rotate(2deg);
+                        transition: transform 0.35s ease;
+                }
+
+                .hero-note:hover {
+                        transform: rotate(0deg) translateY(-4px);
+                }
+
+                .hero-note-top {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        margin-bottom: 30px;
+
+                        color: #777;
+                        font-size: 0.78rem;
+                        font-weight: 700;
+                }
+
+                .hero-note-icon {
+                        width: 42px;
+                        height: 42px;
+
+                        display: grid;
+                        place-items: center;
+
+                        border-radius: 14px;
+                        background: var(--accent-soft);
+
+                        font-size: 1.2rem;
+                }
+
+                .hero-note strong {
+                        display: block;
+                        max-width: 220px;
+
+                        font-size: 1.45rem;
+                        line-height: 1.15;
+                        letter-spacing: -0.04em;
+                }
+
+                .hero-note p {
+                        margin-top: 11px;
+
+                        color: var(--muted);
+                        font-size: 0.9rem;
+                }
+
+                /* =========================
+       WEB PROJECTS
+    ========================= */
+
+                .projects {
+                        display: grid;
+                        gap: 20px;
+                }
+
+                .project {
+                        min-height: 460px;
+
+                        display: grid;
+                        grid-template-columns: 1.18fr 0.82fr;
+
+                        overflow: hidden;
+
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-lg);
+                        background: rgba(255, 255, 255, 0.58);
+                        box-shadow: 0 14px 50px rgba(20, 20, 20, 0.045);
+
+                        transition:
+                                transform 0.35s ease,
+                                box-shadow 0.35s ease;
+                }
+
+                .project:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 24px 75px rgba(20, 20, 20, 0.1);
+                }
+
+                .project:nth-child(even) {
+                        grid-template-columns: 0.82fr 1.18fr;
+                }
+
+                .project:nth-child(even) .project-visual {
+                        order: 2;
+                }
+
+                .project:nth-child(even) .project-content {
+                        order: 1;
+                }
+
+                .project-visual {
+                        overflow: hidden;
+                        aspect-ratio: 1024 / 683;
+                        background: transparent;
+                }
+
+                .project-visual img {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: contain;
+                        object-position: center;
+
+                        transition:
+                                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+                }
+
+                .project:hover .project-visual img {
+                        transform: scale(1.008);
+                }
+
+                .project-placeholder {
+                        width: 100%;
+                        height: 100%;
+                        min-height: 340px;
+
+                        display: grid;
+                        place-items: center;
+                        padding: 30px;
+
+                        text-align: center;
+
+                        background:
+                                linear-gradient(135deg,
+                                        rgba(114, 92, 255, 0.25),
+                                        rgba(255, 255, 255, 0.15)),
+                                #dcd9ff;
+                }
+
+                .project-placeholder.orange {
+                        background:
+                                linear-gradient(135deg,
+                                        rgba(255, 185, 108, 0.28),
+                                        rgba(255, 255, 255, 0.15)),
+                                #f4dbc5;
+                }
+
+                .project-placeholder.green {
+                        background:
+                                linear-gradient(135deg,
+                                        rgba(111, 211, 191, 0.28),
+                                        rgba(255, 255, 255, 0.15)),
+                                #d7eee8;
+                }
+
+                .placeholder-window {
+                        width: 80%;
+                        max-width: 520px;
+                        overflow: hidden;
+
+                        border: 7px solid rgba(255, 255, 255, 0.82);
+                        border-radius: 16px;
+                        background: #fff;
+                        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.16);
+
+                        transform: rotate(-2deg);
+                        transition: transform 0.4s ease;
+                }
+
+                .project:hover .placeholder-window {
+                        transform: rotate(0deg) scale(1.025);
+                }
+
+                .window-bar {
+                        height: 28px;
+
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+
+                        padding: 0 10px;
+
+                        border-bottom: 1px solid #e5e5e5;
+                        background: #f3f3f3;
+                }
+
+                .window-bar i {
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                        background: #cfcfcf;
+                }
+
+                .mock-site {
+                        min-height: 270px;
+                        padding: 20px;
+                        background: linear-gradient(140deg, #f8f8ff, #fff);
+                }
+
+                .mock-nav {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 34px;
+                }
+
+                .mock-logo {
+                        width: 58px;
+                        height: 8px;
+                        border-radius: 999px;
+                        background: #232323;
+                }
+
+                .mock-links {
+                        display: flex;
+                        gap: 7px;
+                }
+
+                .mock-links span {
+                        width: 24px;
+                        height: 5px;
+                        border-radius: 99px;
+                        background: #ddd;
+                }
+
+                .mock-big {
+                        width: 72%;
+                        height: 35px;
+                        margin-bottom: 9px;
+                        border-radius: 9px;
+                        background: #222;
+                }
+
+                .mock-small {
+                        width: 51%;
+                        height: 9px;
+                        margin-bottom: 20px;
+                        border-radius: 99px;
+                        background: #d5d5d5;
+                }
+
+                .mock-button {
+                        width: 80px;
+                        height: 26px;
+                        margin-bottom: 28px;
+                        border-radius: 99px;
+                        background: var(--accent);
+                }
+
+                .mock-cards {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 7px;
+                }
+
+                .mock-cards span {
+                        height: 70px;
+                        border-radius: 9px;
+                        background: #ececf1;
+                }
+
+                .project-content {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 38px;
+                }
+
+                .project-number {
+                        color: #999;
+                        font-size: 0.78rem;
+                        font-weight: 800;
+                }
+
+                .project h3 {
+                        margin-top: 12px;
+
+                        font-size: clamp(1.7rem, 3vw, 2.65rem);
+                        line-height: 1;
+                        letter-spacing: -0.055em;
+                }
+
+                .project p {
+                        max-width: 440px;
+                        margin-top: 16px;
+
+                        color: var(--muted);
+                        line-height: 1.7;
+                }
+
+                .tags {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 7px;
+                        margin-top: 23px;
+                }
+
+                .tag {
+                        padding: 6px 10px;
+
+                        border: 1px solid var(--border);
+                        border-radius: 999px;
+                        background: rgba(255, 255, 255, 0.65);
+
+                        color: #636363;
+                        font-size: 0.75rem;
+                        font-weight: 700;
+                }
+
+                .project-bottom {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 20px;
+                        margin-top: 30px;
+                }
+
+                .project-link {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+
+                        font-size: 0.88rem;
+                        font-weight: 800;
+                }
+
+                .project-link span {
+                        transition: transform 0.2s ease;
+                }
+
+                .project-link:hover span {
+                        transform: translate(3px, -3px);
+                }
+
+                /* =========================
+       COMMUNITY MANAGER
+    ========================= */
+
+                .social-section {
+                        position: relative;
+                }
+
+                .social-intro {
+                        max-width: 740px;
+                        margin-bottom: 40px;
+                }
+
+                .social-intro h2 {
+                        max-width: 780px;
+
+                        font-size: clamp(2.4rem, 5vw, 4.8rem);
+                        line-height: 0.96;
+                        letter-spacing: -0.07em;
+                }
+
+                .social-intro h2 em {
+                        color: var(--accent);
+                        font-style: normal;
+                }
+
+                .social-intro p {
+                        max-width: 650px;
+                        margin-top: 22px;
+
+                        color: var(--muted);
+                        font-size: 1.02rem;
+                        line-height: 1.75;
+                }
+
+                .social-services {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 14px;
+                }
+
+                .service-card {
+                        min-height: 245px;
+                        padding: 28px;
+
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-lg);
+                        background: rgba(255, 255, 255, 0.58);
+                        box-shadow: 0 12px 45px rgba(20, 20, 20, 0.04);
+
+                        transition:
+                                transform 0.3s ease,
+                                box-shadow 0.3s ease;
+                }
+
+                .service-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 20px 55px rgba(20, 20, 20, 0.08);
+                }
+
+                .service-icon {
+                        width: 45px;
+                        height: 45px;
+
+                        display: grid;
+                        place-items: center;
+
+                        border-radius: 14px;
+                        background: var(--accent-soft);
+
+                        font-size: 1.15rem;
+                }
+
+                .service-card:nth-child(2) .service-icon {
+                        background: #fce5d4;
+                }
+
+                .service-card:nth-child(3) .service-icon {
+                        background: #d9eee7;
+                }
+
+                .service-card h3 {
+                        margin-top: 28px;
+
+                        font-size: 1.45rem;
+                        line-height: 1;
+                        letter-spacing: -0.045em;
+                }
+
+                .service-card p {
+                        margin-top: 10px;
+
+                        color: var(--muted);
+                        font-size: 0.9rem;
+                        line-height: 1.65;
+                }
+
+                .service-list {
+                        margin-top: 18px;
+                        padding-left: 0;
+
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 6px;
+                        list-style: none;
+                }
+
+                .service-list li {
+                        padding: 5px 8px;
+
+                        border-radius: 999px;
+                        background: rgba(0, 0, 0, 0.045);
+
+                        color: #666;
+                        font-size: 0.7rem;
+                        font-weight: 700;
+                }
+
+                /* Social portfolio */
+
+                .social-showcase {
+                        margin-top: 65px;
+                }
+
+                .social-showcase-head {
+                        display: flex;
+                        align-items: end;
+                        justify-content: space-between;
+                        gap: 25px;
+                        margin-bottom: 24px;
+                }
+
+                .social-showcase-head h3 {
+                        font-size: clamp(1.8rem, 3vw, 2.7rem);
+                        line-height: 1;
+                        letter-spacing: -0.055em;
+                }
+
+                .social-showcase-head p {
+                        max-width: 360px;
+
+                        color: var(--muted);
+                        font-size: 0.88rem;
+                }
+
+                .social-grid {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                        gap: 12px;
+                }
+
+                .social-card {
+                        position: relative;
+                        aspect-ratio: 4 / 5;
+                        overflow: hidden;
+
+                        border: 1px solid var(--border);
+                        border-radius: 20px;
+                        background: #ddd;
+
+                        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+                }
+
+                .social-card img {
+                        width: 100%;
+                        height: 100%;
+
+                        display: block;
+
+                        object-fit: cover;
+
+                        transition: transform 0.45s ease;
+                }
+
+                .social-card:hover img {
+                        transform: scale(1.045);
+                }
+
+                /*
+      Para usar imágenes reales:
+
+      <img src="post-1.jpg" alt="Post de Instagram">
+      <img src="post-2.jpg" alt="Historia de Instagram">
+      etc.
+
+      Si todavía no tenés imágenes, se muestran los placeholders de abajo.
+    */
+
+                .social-placeholder {
+                        width: 100%;
+                        height: 100%;
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+
+                        padding: 20px;
+
+                        text-align: center;
+                }
+
+                .social-placeholder.one {
+                        background:
+                                radial-gradient(circle at 80% 10%, #e8dfff, transparent 35%),
+                                #eeeaff;
+                }
+
+                .social-placeholder.two {
+                        background:
+                                radial-gradient(circle at 15% 80%, #ffd7ba, transparent 40%),
+                                #f9e9dd;
+                }
+
+                .social-placeholder.three {
+                        background:
+                                radial-gradient(circle at 85% 20%, #cceee5, transparent 40%),
+                                #e3f3ee;
+                }
+
+                .social-placeholder.four {
+                        background:
+                                radial-gradient(circle at 10% 20%, #d9e2ff, transparent 40%),
+                                #e9edff;
+                }
+
+                .social-placeholder-icon {
+                        width: 55px;
+                        height: 55px;
+
+                        display: grid;
+                        place-items: center;
+
+                        margin-bottom: 15px;
+
+                        border-radius: 18px;
+                        background: rgba(255, 255, 255, 0.7);
+
+                        font-size: 1.4rem;
+                }
+
+                .social-placeholder strong {
+                        font-size: 1rem;
+                        letter-spacing: -0.02em;
+                }
+
+                .social-placeholder span {
+                        margin-top: 5px;
+
+                        color: #707070;
+                        font-size: 0.72rem;
+                }
+
+                .social-caption {
+                        margin-top: 14px;
+
+                        color: #777;
+                        font-size: 0.78rem;
+                }
+
+                /* =========================
+       ABOUT
+    ========================= */
+
+                .about-grid {
+                        display: grid;
+                        grid-template-columns: 0.9fr 1.1fr;
+                        align-items: start;
+                        gap: 80px;
+                }
+
+                .about-card {
+                        padding: 30px;
+
+                        border: 1px solid var(--border);
+                        border-radius: var(--radius-lg);
+                        background: rgba(255, 255, 255, 0.56);
+                        box-shadow: var(--shadow);
+                }
+
+                .about-card strong {
+                        display: block;
+
+                        font-size: 3rem;
+                        line-height: 1;
+                        letter-spacing: -0.07em;
+                }
+
+                .about-card p {
+                        margin-top: 12px;
+                        color: var(--muted);
+                }
+
+                .about-copy h2 {
+                        font-size: clamp(2rem, 4vw, 3.4rem);
+                        line-height: 1;
+                        letter-spacing: -0.06em;
+                }
+
+                .about-copy p {
+                        max-width: 640px;
+                        margin-top: 20px;
+
+                        color: var(--muted);
+                        font-size: 1.05rem;
+                        line-height: 1.8;
+                }
+
+                .skills {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                        margin-top: 25px;
+                }
+
+                .skill {
+                        padding: 8px 12px;
+
+                        border-radius: 999px;
+                        background: var(--text);
+
+                        color: #fff;
+                        font-size: 0.76rem;
+                        font-weight: 750;
+                }
+
+                /* =========================
+       CONTACT
+    ========================= */
+
+                .contact {
+                        padding-bottom: 70px;
+                }
+
+                .contact-box {
+                        position: relative;
+                        z-index: 1;
+                        overflow: hidden;
+
+                        padding: clamp(34px, 7vw, 75px);
+
+                        border-radius: 34px;
+                        background: #171717;
+                        color: #fff;
+                        isolation: isolate;
+                }
+
+                .contact-box::before,
+                .contact-box::after {
+                        content: "";
+                        position: absolute;
+                        z-index: -1;
+
+                        border-radius: 50%;
+
+                        filter: blur(10px);
+                        pointer-events: none;
+                }
+
+                .contact-box::before {
+                        width: 320px;
+                        height: 320px;
+
+                        top: -170px;
+                        right: -80px;
+
+                        background: rgba(114, 92, 255, 0.56);
+                }
+
+                .contact-box::after {
+                        width: 280px;
+                        height: 280px;
+
+                        bottom: -160px;
+                        left: -100px;
+
+                        background: rgba(234, 151, 255, 0.42);
+                }
+
+                .contact-box .section-kicker {
+                        color: #bdb4ff;
+                }
+
+                .contact-box h2 {
+                        max-width: 720px;
+                        margin-top: 10px;
+
+                        font-size: clamp(2.6rem, 6vw, 5.6rem);
+                        line-height: 0.95;
+                        letter-spacing: -0.075em;
+                }
+
+                .contact-box p {
+                        max-width: 570px;
+                        margin-top: 22px;
+
+                        color: rgba(255, 255, 255, 0.65);
+                }
+
+                .contact-actions {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin-top: 30px;
+                }
+
+                /* =========================
+       FOOTER
+    ========================= */
+
+                footer {
+                        padding: 28px 0 40px;
+
+                        color: #777;
+                        font-size: 0.78rem;
+                }
+
+                .footer-inner {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 20px;
+
+                        padding-top: 22px;
+                        border-top: 1px solid var(--border);
+                }
+
+                .socials {
+                        display: flex;
+                        gap: 14px;
+                }
+
+                .socials a:hover {
+                        color: var(--text);
+                }
+
+                /* =========================
+       MOBILE
+    ========================= */
+
+                @media (max-width: 900px) {
+                        .container {
+                                width: min(calc(100% - 28px), var(--max-width));
+                        }
+
+                        .hero-grid,
+                        .about-grid {
+                                grid-template-columns: 1fr;
+                                gap: 38px;
+                        }
+
+                        .hero-note {
+                                justify-self: start;
+                        }
+
+                        .social-services {
+                                grid-template-columns: 1fr;
+                        }
+
+                        .social-grid {
+                                grid-template-columns: repeat(2, 1fr);
+                        }
+
+                        .project,
+                        .project:nth-child(even) {
+                                grid-template-columns: 1fr;
+                        }
+
+                        .project:nth-child(even) .project-visual,
+                        .project:nth-child(even) .project-content {
+                                order: unset;
+                        }
+
+                        .project-visual {
+                                min-height: 330px;
+                        }
+
+                        .project-content {
+                                padding: 28px;
+                        }
+
+                        .section-head {
+                                display: block;
+                        }
+
+                        .section-desc {
+                                margin-top: 14px;
+                        }
+                }
+
+                @media (max-width: 600px) {
+                        .nav-links a:not(.nav-contact) {
+                                display: none;
+                        }
+
+                        .hero {
+                                min-height: auto;
+                                padding-top: 145px;
+                                padding-bottom: 60px;
+                        }
+
+                        section {
+                                padding: 70px 0;
+                        }
+
+                        .hero-actions,
+                        .contact-actions {
+                                width: 100%;
+                        }
+
+                        .hero-actions .button,
+                        .contact-actions .button {
+                                width: 100%;
+                        }
+
+                        .hero-note {
+                                width: 100%;
+                        }
+
+                        .project-visual,
+                        .project-visual img,
+                        .project-placeholder {
+                                min-height: 265px;
+                        }
+
+                        .social-showcase-head {
+                                display: block;
+                        }
+
+                        .social-showcase-head p {
+                                margin-top: 12px;
+                        }
+
+                        .social-grid {
+                                gap: 8px;
+                        }
+
+                        .social-card {
+                                border-radius: 15px;
+                        }
+
+                        .footer-inner {
+                                align-items: flex-start;
+                                flex-direction: column;
+                        }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                        html {
+                                scroll-behavior: auto;
+                        }
+
+                        *,
+                        *::before,
+                        *::after {
+                                transition-duration: 0.01ms !important;
+                                animation-duration: 0.01ms !important;
+                                animation-iteration-count: 1 !important;
+                        }
+                }
+        </style>
+</head>
+
+<body>
+
+        <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+        <div class="nav-wrap">
+                <nav id="nav">
+
+                        <a class="brand" href="#inicio" aria-label="Inicio">
+                                <span class="brand-dot"></span>
+                                Lucas Griguol
+                        </a>
+
+                        <div class="nav-links">
+                                <a href="#proyectos">Webs</a>
+                                <a href="#redes">Redes</a>
+                                <a href="#sobre-mi">Sobre mí</a>
+                                <a href="#contacto" class="nav-contact">Hablemos</a>
+                        </div>
+
+                </nav>
+        </div>
+
+
+        <main>
+
+                <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+                <section class="hero" id="inicio">
+
+                        <div class="container hero-grid">
+
+                                <div class="reveal">
+
+                                        <div class="eyebrow">
+                                                <span></span>
+                                                Disponible para nuevos proyectos
+                                        </div>
+
+                                        <h1>
+                                                Webs y<br />
+                                                 <em>contenido digital.</em>
+                                        </h1>
+
+                                        <p class="hero-copy">
+                                                Soy Lucas. Diseño y desarrollo sitios web y también ayudo a marcas
+                                                y negocios a tener una presencia más activa y atractiva en redes.
+                                        </p>
+
+                                        <div class="hero-actions">
+
+                                                <a class="button primary" href="#proyectos">
+                                                        Ver mis trabajos
+                                                        <span>↓</span>
+                                                </a>
+
+                                                <a class="button secondary" href="#contacto">
+                                                        Contactarme
+                                                </a>
+
+                                        </div>
+
+                                </div>
+
+
+                                <div class="hero-note reveal">
+
+                                        <div class="hero-note-top">
+                                                <span>PORTFOLIO / 2026</span>
+                                                <div class="hero-note-icon">✦</div>
+                                        </div>
+
+                                        <strong>
+                                                Menos vueltas.<br />
+                                                Mejores resultados.
+                                        </strong>
+
+                                        <p>
+                                                Desarrollo web + contenido + gestión de redes.
+                                        </p>
+
+                                </div>
+
+                        </div>
+
+                </section>
+
+
+                <!-- =====================================================
+         WEBS
+    ====================================================== -->
+
+                <section id="proyectos">
+
+                        <div class="container">
+
+                                <div class="section-head reveal">
+
+                                        <div>
+                                                <div class="section-kicker">Desarrollo web</div>
+                                                <h2 class="section-title">
+                                                        Algunas webs que hice.
+                                                </h2>
+                                        </div>
+
+                                        <p class="section-desc">
+                                                Sitios pensados para que una persona entienda rápidamente qué
+                                                ofrece el negocio y pueda contactarlo.
+                                        </p>
+
+                                </div>
+
+
+                                <div class="projects">
+
+
+                                        <!-- =========================
+               WEB 01
+          ========================== -->
+
+                                        <article class="project reveal">
+
+                                                <div class="project-visual">
+
+
+
+                                                        <img src="Pintureria.png" alt="Captura de la web Proyecto 1">
+
+
+                                                        <div class="project-placeholder">
+
+                                                                <div class="placeholder-window">
+
+                                                                        <div class="window-bar">
+                                                                                <i></i>
+                                                                                <i></i>
+                                                                                <i></i>
+                                                                        </div>
+
+                                                                        <div class="mock-site">
+
+                                                                                <div class="mock-nav">
+                                                                                        <div class="mock-logo"></div>
+
+                                                                                        <div class="mock-links">
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                        </div>
+                                                                                </div>
+
+                                                                                <div class="mock-big"></div>
+                                                                                <div class="mock-small"></div>
+                                                                                <div class="mock-button"></div>
+
+                                                                                <div class="mock-cards">
+                                                                                        <span></span>
+                                                                                        <span></span>
+                                                                                        <span></span>
+                                                                                </div>
+
+                                                                        </div>
+
+                                                                </div>
+
+                                                        </div>
+
+                                                </div>
+
+
+                                                <div class="project-content">
+
+                                                        <div>
+
+                                                                <div class="project-number">
+                                                                        01 / 03
+                                                                </div>
+
+                                                                <h3>
+                                                                        Pintureria Republica Colores
+                                                                </h3>
+
+                                                                <p>
+                                                                        Descripción corta del proyecto. Contá qué tipo
+                                                                        de web es,
+                                                                        para quién la hiciste y qué problema buscaba
+                                                                        resolver.
+                                                                </p>
+
+                                                                <div class="tags">
+                                                                        <span class="tag">HTML</span>
+                                                                        <span class="tag">CSS</span>
+                                                                        <span class="tag">JavaScript</span>
+                                                                </div>
+
+                                                        </div>
+
+
+                                                        <div class="project-bottom">
+
+                                                                <span style="color:#888;font-size:.8rem;">
+                                                                        Web / Landing page
+                                                                </span>
+
+                                                                <!-- CAMBIÁ ESTE LINK -->
+                                                                <a class="project-link" href="https://example.com"
+                                                                        target="_blank" rel="noopener">
+                                                                        Ver web <span>↗</span>
+                                                                </a>
+
+                                                        </div>
+
+                                                </div>
+
+                                        </article>
+
+
+                                        <!-- =========================
+               WEB 02
+          ========================== -->
+
+                                        <article class="project reveal">
+
+                                                <div class="project-visual">
+
+                                                        <img src="Fraganza.png" alt="Captura de la web Proyecto 1">
+
+                                                        <div class="project-placeholder orange">
+
+                                                                <div class="placeholder-window">
+
+                                                                        <div class="window-bar">
+                                                                                <i></i>
+                                                                                <i></i>
+                                                                                <i></i>
+                                                                        </div>
+
+                                                                        <div class="mock-site"
+                                                                                style="background:linear-gradient(140deg,#fff9f3,#fff);">
+
+                                                                                <div class="mock-nav">
+
+                                                                                        <div class="mock-logo"
+                                                                                                style="background:#3a2b23;">
+                                                                                        </div>
+
+                                                                                        <div class="mock-links">
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                        </div>
+
+                                                                                </div>
+
+                                                                                <div class="mock-big"
+                                                                                        style="background:#3a2b23;">
+                                                                                </div>
+
+                                                                                <div class="mock-small"></div>
+
+                                                                                <div class="mock-button"
+                                                                                        style="background:#d97842;">
+                                                                                </div>
+
+                                                                                <div class="mock-cards">
+                                                                                        <span
+                                                                                                style="background:#f4e0d1;"></span>
+                                                                                        <span
+                                                                                                style="background:#ead3c0;"></span>
+                                                                                        <span
+                                                                                                style="background:#f2e6da;"></span>
+                                                                                </div>
+
+                                                                        </div>
+
+                                                                </div>
+
+                                                        </div>
+
+                                                </div>
+
+
+                                                <div class="project-content">
+
+                                                        <div>
+
+                                                                <div class="project-number">
+                                                                        02 / 03
+                                                                </div>
+
+                                                                <h3>
+                                                                        Perfumeria Fraganza
+                                                                </h3>
+
+                                                                <p>
+                                                                        Contá brevemente qué hiciste en este proyecto y
+                                                                        qué objetivo
+                                                                        tenía la web.
+                                                                </p>
+
+                                                                <div class="tags">
+                                                                        <span class="tag">Diseño</span>
+                                                                        <span class="tag">Responsive</span>
+                                                                        <span class="tag">UI</span>
+                                                                </div>
+
+                                                        </div>
+
+
+                                                        <div class="project-bottom">
+
+                                                                <span style="color:#888;font-size:.8rem;">
+                                                                        Web / Negocio
+                                                                </span>
+
+                                                                <!-- CAMBIÁ ESTE LINK -->
+                                                                <a class="project-link" href="https://example.com"
+                                                                        target="_blank" rel="noopener">
+                                                                        Ver web <span>↗</span>
+                                                                </a>
+
+                                                        </div>
+
+                                                </div>
+
+                                        </article>
+
+
+                                        <!-- =========================
+               WEB 03
+          ========================== -->
+
+                                        <article class="project reveal">
+
+                                                <div class="project-visual">
+
+                                                        <img src="Enzo Barber.png" alt="Captura de la web Proyecto 1">
+
+                                                        <div class="project-placeholder green">
+
+                                                                <div class="placeholder-window">
+
+                                                                        <div class="window-bar">
+                                                                                <i></i>
+                                                                                <i></i>
+                                                                                <i></i>
+                                                                        </div>
+
+                                                                        <div class="mock-site"
+                                                                                style="background:linear-gradient(140deg,#f3fffc,#fff);">
+
+                                                                                <div class="mock-nav">
+
+                                                                                        <div class="mock-logo"
+                                                                                                style="background:#1e4940;">
+                                                                                        </div>
+
+                                                                                        <div class="mock-links">
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                        </div>
+
+                                                                                </div>
+
+                                                                                <div class="mock-big"
+                                                                                        style="background:#1e4940;">
+                                                                                </div>
+
+                                                                                <div class="mock-small"></div>
+
+                                                                                <div class="mock-button"
+                                                                                        style="background:#3aa890;">
+                                                                                </div>
+
+                                                                                <div class="mock-cards">
+                                                                                        <span
+                                                                                                style="background:#d8eee8;"></span>
+                                                                                        <span
+                                                                                                style="background:#e4f3ef;"></span>
+                                                                                        <span
+                                                                                                style="background:#d0ebe4;"></span>
+                                                                                </div>
+
+                                                                        </div>
+
+                                                                </div>
+
+                                                        </div>
+
+                                                </div>
+
+
+                                                <div class="project-content">
+
+                                                        <div>
+
+                                                                <div class="project-number">
+                                                                        03 / 03
+                                                                </div>
+
+                                                                <h3>
+                                                                        Enzo barber
+                                                                </h3>
+
+                                                                <p>
+                                                                        Podés usar esta tarjeta para mostrar otro sitio,
+                                                                        una tienda,
+                                                                        una página institucional o cualquier proyecto
+                                                                        que quieras
+                                                                        destacar.
+                                                                </p>
+
+                                                                <div class="tags">
+                                                                        <span class="tag">Frontend</span>
+                                                                        <span class="tag">JavaScript</span>
+                                                                        <span class="tag">Mobile</span>
+                                                                </div>
+
+                                                        </div>
+
+
+                                                        <div class="project-bottom">
+
+                                                                <span style="color:#888;font-size:.8rem;">
+                                                                        Web / Producto
+                                                                </span>
+
+                                                                <!-- CAMBIÁ ESTE LINK -->
+                                                                <a class="project-link" href="https://example.com"
+                                                                        target="_blank" rel="noopener">
+                                                                        Ver web <span>↗</span>
+                                                                </a>
+
+                                                        </div>
+
+                                                </div>
+
+                                        </article>
+
+                                </div>
+
+                        </div>
+
+                </section>
+
+
+                <!-- =====================================================
+         COMMUNITY MANAGER
+    ====================================================== -->
+
+                <section id="redes" class="social-section">
+
+                        <div class="container">
+
+                                <div class="social-intro reveal">
+
+                                        <div class="section-kicker">
+                                                Community Manager
+                                        </div>
+
+                                        <h2>
+                                                Que tu marca también
+                                                <em>se vea bien en redes.</em>
+                                        </h2>
+
+                                        <p>
+                                                No se trata solamente de publicar. La idea es construir una
+                                                presencia digital coherente, activa y fácil de reconocer.
+                                                Puedo ayudarte con el contenido, la organización y la gestión
+                                                diaria de tus redes sociales.
+                                        </p>
+
+                                </div>
+
+
+                                <!-- SERVICIOS -->
+
+                                <div class="social-services">
+
+
+                                        <article class="service-card reveal">
+
+                                                <div>
+                                                        <div class="service-icon">
+                                                                ✦
+                                                        </div>
+
+                                                        <h3>
+                                                                Contenido
+                                                        </h3>
+
+                                                        <p>
+                                                                Diseño y planificación de piezas para que tu perfil
+                                                                tenga
+                                                                contenido atractivo y consistente.
+                                                        </p>
+                                                </div>
+
+                                                <ul class="service-list">
+                                                        <li>Posts</li>
+                                                        <li>Stories</li>
+                                                        <li>Reels</li>
+                                                        <li>Diseño</li>
+                                                </ul>
+
+                                        </article>
+
+
+                                        <article class="service-card reveal">
+
+                                                <div>
+                                                        <div class="service-icon">
+                                                                ◷
+                                                        </div>
+
+                                                        <h3>
+                                                                Gestión
+                                                        </h3>
+
+                                                        <p>
+                                                                Organización del contenido, calendario de publicaciones
+                                                                y
+                                                                mantenimiento de las redes.
+                                                        </p>
+                                                </div>
+
+                                                <ul class="service-list">
+                                                        <li>Calendario</li>
+                                                        <li>Publicaciones</li>
+                                                        <li>Organización</li>
+                                                        <li>Planificación</li>
+                                                </ul>
+
+                                        </article>
+
+
+                                        <article class="service-card reveal">
+
+                                                <div>
+                                                        <div class="service-icon">
+                                                                ♡
+                                                        </div>
+
+                                                        <h3>
+                                                                Comunidad
+                                                        </h3>
+
+                                                        <p>
+                                                                Atención de comentarios y mensajes para mantener una
+                                                                relación
+                                                                cercana con las personas que siguen la marca.
+                                                        </p>
+                                                </div>
+
+                                                <ul class="service-list">
+                                                        <li>Mensajes</li>
+                                                        <li>Comentarios</li>
+                                                        <li>Comunidad</li>
+                                                        <li>Atención</li>
+                                                </ul>
+
+                                        </article>
+
+                                </div>
+
+
+                                <!-- GALERÍA DE REDES -->
+
+                                <div class="social-showcase">
+
+                                        <div class="social-showcase-head reveal">
+
+                                                <div>
+                                                        <div class="section-kicker">
+                                                                Trabajos de redes
+                                                        </div>
+
+                                                        <h3>
+                                                                Algunos contenidos.
+                                                        </h3>
+                                                </div>
+
+                                                <p>
+                                                        Acá podés mostrar posts, stories, piezas gráficas o cualquier
+                                                        contenido que hayas creado para redes.
+                                                </p>
+
+                                        </div>
+
+
+                                        <div class="social-grid">
+
+
+                                                <!--
+              PARA USAR UNA IMAGEN REAL:
+
+              Reemplazá el contenido del .social-placeholder por:
+
+              <img
+                src="post-1.jpg"
+                alt="Post de Instagram para una marca"
+              >
+
+              Las imágenes pueden ser JPG, PNG o WEBP.
+            -->
+
+
+                                                <!-- POST 01 -->
+
+                                                <div class="social-card reveal">
+
+                                                        <div class="social-placeholder one">
+
+                                                                <div class="social-placeholder-icon">
+                                                                        📸
+                                                                </div>
+
+                                                                <strong>
+                                                                        Tu próximo post
+                                                                </strong>
+
+                                                                <span>
+                                                                        post-1.jpg
+                                                                </span>
+
+                                                        </div>
+
+                                                </div>
+
+
+                                                <!-- POST 02 -->
+
+                                                <div class="social-card reveal">
+
+                                                        <div class="social-placeholder two">
+
+                                                                <div class="social-placeholder-icon">
+                                                                        ✨
+                                                                </div>
+
+                                                                <strong>
+                                                                        Contenido de marca
+                                                                </strong>
+
+                                                                <span>
+                                                                        post-2.jpg
+                                                                </span>
+
+                                                        </div>
+
+                                                </div>
+
+
+                                                <!-- POST 03 -->
+
+                                                <div class="social-card reveal">
+
+                                                        <div class="social-placeholder three">
+
+                                                                <div class="social-placeholder-icon">
+                                                                        ◎
+                                                                </div>
+
+                                                                <strong>
+                                                                        Story / Reel
+                                                                </strong>
+
+                                                                <span>
+                                                                        post-3.jpg
+                                                                </span>
+
+                                                        </div>
+
+                                                </div>
+
+
+                                                <!-- POST 04 -->
+
+                                                <div class="social-card reveal">
+
+                                                        <div class="social-placeholder four">
+
+                                                                <div class="social-placeholder-icon">
+                                                                        ★
+                                                                </div>
+
+                                                                <strong>
+                                                                        Diseño para redes
+                                                                </strong>
+
+                                                                <span>
+                                                                        post-4.jpg
+                                                                </span>
+
+                                                        </div>
+
+                                                </div>
+
+                                        </div>
+
+
+                                        <div class="social-caption">
+                                                * Reemplazá estos ejemplos por tus trabajos reales.
+                                        </div>
+
+                                </div>
+
+                        </div>
+
+                </section>
+
+
+                <!-- =====================================================
+         SOBRE MÍ
+    ====================================================== -->
+
+                <section id="sobre-mi">
+
+                        <div class="container">
+
+                                <div class="about-grid">
+
+
+                                        <div class="about-card reveal">
+
+                                                <strong>
+                                                        01.
+                                                </strong>
+
+                                                <p>
+                                                        Diseño + desarrollo<br />
+                                                        + contenido.
+                                                </p>
+
+                                        </div>
+
+
+                                        <div class="about-copy reveal">
+
+                                                <div class="section-kicker">
+                                                        Sobre mí
+                                                </div>
+
+                                                <h2>
+                                                        No hace falta complicarla para hacerla bien.
+                                                </h2>
+
+                                                <p>
+                                                        Me gusta construir sitios que sean claros, rápidos y agradables
+                                                        de usar. También me interesa ayudar a negocios y marcas a
+                                                        comunicar mejor lo que hacen a través de sus redes sociales.
+                                                </p>
+
+                                                <div class="skills">
+
+                                                        <span class="skill">
+                                                                HTML
+                                                        </span>
+
+                                                        <span class="skill">
+                                                                CSS
+                                                        </span>
+
+                                                        <span class="skill">
+                                                                JavaScript
+                                                        </span>
+
+                                                        <span class="skill">
+                                                                Responsive
+                                                        </span>
+
+                                                        <span class="skill">
+                                                                UI / UX
+                                                        </span>
+
+                                                        <span class="skill">
+                                                                Social Media
+                                                        </span>
+
+                                                        <span class="skill">
+                                                                Community Manager
+                                                        </span>
+
+                                                </div>
+
+                                        </div>
+
+                                </div>
+
+                        </div>
+
+                </section>
+
+
+                <!-- =====================================================
+         CONTACTO
+    ====================================================== -->
+
+                <section class="contact" id="contacto">
+
+                        <div class="container">
+
+                                <div class="contact-box reveal">
+
+                                        <div class="section-kicker">
+                                                Contacto
+                                        </div>
+
+                                        <h2>
+                                                ¿Hacemos algo piola?
+                                        </h2>
+
+                                        <p>
+                                                Si necesitás una web, querés mejorar tus redes o tenés una idea
+                                                para tu negocio, escribime.
+                                        </p>
+
+                                        <div class="contact-actions">
+
+                                                <!-- CAMBIÁ TU EMAIL -->
+                                                <a class="button light" href="mailto:tuemail@ejemplo.com">
+                                                        Mandarme un mail ↗
+                                                </a>
+
+
+                                                <!-- CAMBIÁ TU INSTAGRAM -->
+                                                <a class="button ghost-dark" href="https://instagram.com/"
+                                                        target="_blank" rel="noopener">
+                                                        Instagram
+                                                </a>
+
+
+                                                <!-- CAMBIÁ TU GITHUB -->
+                                                <a class="button ghost-dark" href="https://github.com/" target="_blank"
+                                                        rel="noopener">
+                                                        GitHub
+                                                </a>
+
+                                        </div>
+
+                                </div>
+
+                        </div>
+
+                </section>
+
+        </main>
+
+
+        <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+        <footer>
+
+                <div class="container">
+
+                        <div class="footer-inner">
+
+                                <span>
+                                        © <span id="year"></span> Lucas.
+                                        Todos los derechos reservados.
+                                </span>
+
+                                <div class="socials">
+
+                                        <a href="#inicio">
+                                                Arriba ↑
+                                        </a>
+
+                                </div>
+
+                        </div>
+
+                </div>
+
+        </footer>
+
+
+        <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+        <script>
+
+                /*
+                  AÑO AUTOMÁTICO
+                */
+
+                document.getElementById("year").textContent =
+                        new Date().getFullYear();
+
+
+                /*
+                  NAVBAR AL HACER SCROLL
+                */
+
+                const nav = document.getElementById("nav");
+
+                function updateNav() {
+
+                        if (window.scrollY > 25) {
+                                nav.classList.add("scrolled");
+                        } else {
+                                nav.classList.remove("scrolled");
+                        }
+
+                }
+
+                updateNav();
+
+                window.addEventListener(
+                        "scroll",
+                        updateNav,
+                        {passive: true}
+                );
+
+
+                /*
+                  ANIMACIONES DE ENTRADA
+                */
+
+                const revealItems =
+                        document.querySelectorAll(".reveal");
+
+                const observer =
+                        new IntersectionObserver(
+                                (entries) => {
+
+                                        entries.forEach((entry) => {
+
+                                                if (entry.isIntersecting) {
+
+                                                        entry.target.classList.add("visible");
+
+                                                        observer.unobserve(entry.target);
+
+                                                }
+
+                                        });
+
+                                },
+                                {
+                                        threshold: 0.12,
+                                        rootMargin: "0px 0px -40px 0px"
+                                }
+                        );
+
+
+                revealItems.forEach((item) => {
+
+                        observer.observe(item);
+
+                });
+
+
+                /*
+                  LINKS DE EJEMPLO
+            
+                  Evita que example.com se abra accidentalmente.
+                  Borrá este bloque cuando pongas tus links reales.
+                */
+
+                document
+                        .querySelectorAll(
+                                'a[href="https://example.com"]'
+                        )
+                        .forEach((link) => {
+
+                                link.addEventListener(
+                                        "click",
+                                        (event) => {
+
+                                                event.preventDefault();
+
+                                                alert(
+                                                        "Reemplazá este enlace por la URL real de tu proyecto."
+                                                );
+
+                                        }
+                                );
+
+                        });
+
+        </script>
+
+</body>
+
+</html>

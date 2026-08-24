@@ -1235,3 +1235,9 @@ footer {
         animation-iteration-count: 1 !important;
     }
 }
+
+.tarjeta {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
